@@ -1,0 +1,105 @@
+graph TB
+    subgraph UI["🖥️ Interface Utilisateur (TUI)"]
+        Menu["Menu Principal<br/>- Nouvelle Quête<br/>- Reprendre<br/>- Arbre<br/>- Historique"]
+        PhaseA["Interface Phase A<br/>Planification"]
+        PhaseB["Interface Phase B<br/>Exécution"]
+        Display["Affichage Rich<br/>- Panels<br/>- Tables<br/>- Progress<br/>- Markdown"]
+    end
+
+    subgraph Core["🧠 Cœur du Système (Agent CEI)"]
+        Agent["Agent Gemini<br/>- Gestion contexte<br/>- Historique<br/>- Génération"]
+        
+        subgraph PhaseAPlan["Phase A: Planification"]
+            A1["A.1 Déclaration<br/>d'Intention"]
+            A2["A.2 Déconstruction<br/>Concepts"]
+            A3["A.3 Définition<br/>Quête"]
+        end
+        
+        subgraph PhaseB_Exec["Phase B: Exécution"]
+            B1["B.1 Exploration<br/>& Pratique"]
+            B2["B.2 Capitalisation<br/>Fiche"]
+            B3["B.3 Défi<br/>Inverse"]
+            B4["B.4 Débriefing<br/>Métacognitif"]
+            B5["B.5 Mise à Jour<br/>Arbre"]
+        end
+    end
+
+    subgraph Protocols["⚡ Protocoles Adaptatifs (Learning Triggers)"]
+        P1["Leçon de l'Erreur<br/>- Détection erreur<br/>- Analyse cause<br/>- Capitalisation"]
+        P2["Sparring Spontané<br/>- Détection similarité<br/>- Connexion concepts<br/>- Approfondissement"]
+        P3["Synthèse Dynamique<br/>- Détection complexité<br/>- Génération synthèse<br/>- Clarification"]
+        Detector["Détecteur de Contexte<br/>- Keywords<br/>- Patterns<br/>- Seuils"]
+    end
+
+    subgraph Storage["💾 Stockage Local"]
+        Journal["Journal<br/>Markdown<br/>journal/*.md"]
+        Fiches["Fiches<br/>Markdown<br/>fiches/*.md"]
+        Arbre["Arbre Compétences<br/>JSON<br/>arbre.json"]
+        Quetes["Historique Quêtes<br/>JSON<br/>quetes.json"]
+        Config["Configuration<br/>YAML<br/>config.yaml"]
+    end
+
+    subgraph External["🌐 Services Externes"]
+        Gemini["API Gemini<br/>google-generativeai<br/>gemini-2.0-flash-exp"]
+        Env["Variables Env<br/>.env<br/>GEMINI_API_KEY"]
+    end
+
+    %% Flux Interface → Core
+    Menu --> Agent
+    PhaseA --> A1
+    PhaseB --> B1
+    
+    %% Flux Phase A
+    A1 --> A2
+    A2 --> A3
+    A3 --> Agent
+    
+    %% Flux Phase B
+    B1 --> B2
+    B2 --> B3
+    B3 --> B4
+    B4 --> B5
+    
+    %% Agent ↔ Gemini
+    Agent <--> Gemini
+    Gemini --> Env
+    
+    %% Agent ↔ Storage
+    Agent --> Journal
+    Agent --> Fiches
+    Agent --> Arbre
+    Agent --> Quetes
+    Config --> Agent
+    
+    %% Protocoles ↔ Agent
+    Detector --> P1
+    Detector --> P2
+    Detector --> P3
+    P1 --> Agent
+    P2 --> Agent
+    P3 --> Agent
+    B1 --> Detector
+    
+    %% Storage → Display
+    Journal --> Display
+    Fiches --> Display
+    Arbre --> Display
+    Quetes --> Display
+    
+    %% Display → UI
+    Display --> Menu
+    Display --> PhaseA
+    Display --> PhaseB
+
+    %% Styles
+    classDef uiStyle fill:#3498db,stroke:#2980b9,stroke-width:2px,color:#fff
+    classDef coreStyle fill:#e74c3c,stroke:#c0392b,stroke-width:2px,color:#fff
+    classDef protocolStyle fill:#f39c12,stroke:#d68910,stroke-width:2px,color:#fff
+    classDef storageStyle fill:#2ecc71,stroke:#27ae60,stroke-width:2px,color:#fff
+    classDef externalStyle fill:#9b59b6,stroke:#8e44ad,stroke-width:2px,color:#fff
+    
+    class Menu,PhaseA,PhaseB,Display uiStyle
+    class Agent,A1,A2,A3,B1,B2,B3,B4,B5 coreStyle
+    class P1,P2,P3,Detector protocolStyle
+    class Journal,Fiches,Arbre,Quetes,Config storageStyle
+    class Gemini,Env externalStyle
