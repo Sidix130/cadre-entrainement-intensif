@@ -1,0 +1,21 @@
+stateDiagram-v2
+    [*] --> NonCommencé
+    NonCommencé --> Exploré: Première exposition
+    Exploré --> EnCours: Pratique active
+    EnCours --> Acquis: Validation réussie
+    Acquis --> Maîtrisé: Application répétée
+    
+    EnCours --> Exploré: Blocage/Confusion
+    Exploré --> NonCommencé: Abandon temporaire
+    
+    Maîtrisé --> [*]: Intégré au workflow
+    
+    note right of Exploré
+        Fiche créée
+        Concepts identifiés
+    end note
+    
+    note right of Acquis
+        Défi Inverse réussi
+        Ajouté à l'Arbre
+    end note

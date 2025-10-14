@@ -1,0 +1,29 @@
+sequenceDiagram
+    participant A as Architecte
+    participant S as Sparring Partner
+    participant J as Journal de Bord
+    participant F as Fiche Récap
+    participant Ar as Arbre Compétences
+    
+    A->>S: Déclaration d'Intention
+    S->>A: Questions de déconstruction
+    A->>J: Note ses réflexions
+    S->>A: Définition de la Quête
+    
+    rect rgb(232, 234, 246)
+        Note over A,S: Phase d'Exploration
+        loop Pratique Active
+            A->>A: Expérimentation
+            A->>J: Journalise résultats
+            A->>S: Verbalise compréhension
+            S->>A: Validation/Guidage
+        end
+    end
+    
+    A->>F: Génère Fiche Récapitulative
+    S->>A: Défi Inverse (Validation)
+    S->>A: Débriefing Méta-Cognitif
+    A->>J: Insights sur le processus
+    A->>Ar: Mise à jour compétences
+    
+    Note over A,Ar: Cycle terminé, prêt pour le suivant
