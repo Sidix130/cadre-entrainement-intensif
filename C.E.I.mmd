@@ -1,0 +1,68 @@
+graph TD
+    subgraph GOAL [Projet Archon]
+        A(Forger l'environnement Hyprland parfait)
+    end
+
+    subgraph ACTORS [Acteurs]
+        ARCHITECT["👨‍💻 Architecte (Sidix)<br/><i>Définit, pratique, verbalise</i>"]
+        SPARRING["🤖 Sparring Partner (Gemini)<br/><i>Guide, valide, synthétise</i>"]
+    end
+
+    subgraph QUEST_FRAMING [Phase A: Planification — Quest Framing Cycle]
+        direction TB
+        Q1(1. Déclaration d'Intention) --> Q2(2. Déconstruction des Concepts)
+        Q2 --> Q3(3. Définition de la Quête<br/><i>Objectif clair & mesurable</i>)
+    end
+
+    subgraph WORKFLOW [Phase B: Exécution — Workflow Cycle]
+        direction TB
+        W1["1. Exploration & Pratique<br/><i>(Mains sur le clavier)</i>"] --> W2["2. Capitalisation<br/><i>(Génération de la Fiche)</i>"]
+        W2 --> W3["3. Validation Finale<br/><i>(Défi Inverse)</i>"]
+        W3 --> W4["4. Débriefing Méta-Cognitif<br/><i>(Analyse du Journal)</i>"]
+        W4 --> W5["5. Mise à jour de la Maîtrise<br/><i>(Mise à jour de l'Arbre)</i>"]
+    end
+
+    subgraph TRIGGERS [Protocoles Spéciaux — Learning Triggers]
+        T1{Leçon de l'Erreur}
+        T2{Sparring Spontané}
+        T3{Synthèse Dynamique}
+    end
+
+    subgraph TOOLS [Outils & Artefacts]
+        JDB(["📝 Journal de Bord<br/>(Input/Output de l'Architecte)"])
+        FR[("📚 Fiche Récapitulative<br/>(Livrable de Capitalisation)")]
+        AC[("🌳 Arbre de Compétences<br/>(Carte de la Maîtrise)")]
+    end
+
+    %% --- FLUX PRINCIPAL ---
+    ARCHITECT -- "Initie le cycle avec une..." --> Q1
+    Q3 -- "Lance la..." --> W1
+    W5 -- "Boucle sur une..." --> Q1
+
+    %% --- INTERACTIONS & DÉCLENCHEURS ---
+    W1 -- "Interaction constante" --> ARCHITECT
+    W1 -- "Interaction constante" --> SPARRING
+    W1 -. "Peut déclencher à tout moment les..." .-> T1
+    W1 -.-> T2
+    W1 -.-> T3
+
+    %% --- FLUX DE DONNÉES (OUTILS & LIVRABLES) ---
+    ARCHITECT -- "Tient à jour son..." --> JDB
+    JDB -- "Sert de base pour le..." --> W4
+    W2 -- "Produit la..." --> FR
+    W5 -- "Met à jour l'..." --> AC
+
+    %% --- STYLING ---
+    classDef goal fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#1b5e20
+    classDef actor fill:#e1f5fe,stroke:#0277bd,stroke-width:2px,color:#01579b
+    classDef quest fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px,color:#4a148c
+    classDef workflow fill:#e8eaf6,stroke:#303f9f,stroke-width:2px,color:#1a237e
+    classDef trigger fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,color:#e65100
+    classDef tool fill:#f5f5f5,stroke:#616161,stroke-width:2px,color:#212121
+
+    class A goal
+    class ARCHITECT,SPARRING actor
+    class Q1,Q2,Q3 quest
+    class W1,W2,W3,W4,W5 workflow
+    class T1,T2,T3 trigger
+    class JDB,FR,AC tool
