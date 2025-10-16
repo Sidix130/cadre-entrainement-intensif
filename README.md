@@ -1,4 +1,4 @@
-# Cadre d'Entraînement Intensif (C.E.I.) - Projet Archon
+# Cadre d'Entraînement Intensif (C.E.I.) - Projet Maetro
 
 ## 🎯 Objectif
 Forger l'environnement Hyprland parfait à travers un cadre d'apprentissage structuré et itératif.
